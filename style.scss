@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: monospace;
+  box-sizing: border-box;
+}
+
+// mixin 要放在上面 
+@mixin btnStyle {
+    background: linear-gradient(to right, aqua 50%, navy 50%);
+    color: white;
+    background-size: 200% 100%;
+    background-position: right bottom;
+    border: none;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    border-radius: 4px;
+    padding: 5px;
+    margin-top: 10px;
+    position: relative;
+    transition: all 0.25s ease-in-out;
+  
+    &:hover {
+      cursor: pointer;
+      color: white;
+      background-position: left bottom;
+      box-shadow: $boxSha;
+    }
+}
+
+// main 
+main {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+// define variables
+:root {
+  --red: 2px solid red;
+}
+$redish: red;
+$boxSha: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+// 左邊 container (CSS)
+.container1 {
+  width: 500px;
+  height: 200px;
+  border: var(--red);
+}
+.container1 h1 {
+  font-size: 30px;
+}
+.container1 input {
+  font-size: 10px;
+}
+.container .box {
+  width: 100px;
+  background-color: red;
+  position: relative;
+  z-index: 100;
+  &:hover {
+    box-shadow: $boxSha;
+  }
+}
+
+// 右邊 container (SCSS)
+.container2 {
+  width: 500px;
+  height: 200px;
+  border: 2px solid red;
+  box-sizing: content-box;
+  h1 {
+    font-size: 30px;
+  }
+  input {
+    font-size: 40px;
+  }
+  .poop {
+    // nesting 築巢
+    .hello {
+      .box {
+        background-color: rgb(43, 255, 0);
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        z-index: 100;
+        transition: all 0.4s ease-in-out;
+        border-radius: 50%;
+        top: 50%;
+        &:hover {
+          transform: scale(1.5);
+          box-shadow: $boxSha;
+          cursor: pointer;
+        }
+        .yo {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .you {
+            font-size: 30px;
+            &:hover {
+              transform: scale(1.6);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  button.btn {
+    @include btnStyle;
+  };
+}
+
+
